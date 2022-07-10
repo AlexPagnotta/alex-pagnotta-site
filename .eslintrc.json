@@ -53,6 +53,7 @@
         "ignoreRestSiblings": true
       }
     ], //require variables to be used, but ignore unused vars in destructuring
+    "@typescript-eslint/no-var-requires": "off", //allows requires import
 
     "import/order": [
       "error",

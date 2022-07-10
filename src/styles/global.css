@@ -2,7 +2,16 @@
 
 @layer base {
   html {
-    @apply text-pink-500;
+    @apply min-h-full cursor-default bg-white leading-none text-black;
+  }
+
+  body {
+    @apply font-sans text-body-3 antialiased;
+  }
+
+  html,
+  body {
+    @apply flex flex-1 flex-col;
   }
 }
 

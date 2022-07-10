@@ -1,0 +1,21 @@
+---
+export type Props = {
+  title?: string
+  description?: string
+}
+
+const { title, description } = Astro.props
+
+const seoTitle = title || 'placeholderSEOTitle'
+const seoDescription = description || 'placeholderSEODescription'
+---
+
+<!-- Global Metadata -->
+<meta charset='utf-8' />
+<meta name='viewport' content='width=device-width' />
+<link rel='icon' type='image/x-icon' href='/favicon.ico' />
+
+<!-- Primary Meta Tags -->
+<title>{seoTitle}</title>
+<meta name='title' content={seoTitle} />
+<meta name='description' content={seoDescription} />
