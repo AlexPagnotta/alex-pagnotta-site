@@ -2,38 +2,36 @@
   "extends": [
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
     "plugin:jsx-a11y/recommended"
   ],
-  "plugins": [
-    "import",
-    "react-hooks"
-  ],
+  "plugins": ["import", "react-hooks"],
   "overrides": [
     // Astro Config
     {
-      "files": [
-        "*.astro"
-      ],
+      "files": ["*.astro"],
       "parser": "astro-eslint-parser",
       "parserOptions": {
         "parser": "@typescript-eslint/parser",
-        "extraFileExtensions": [
-          ".astro"
-        ]
-      }, 
+        "extraFileExtensions": [".astro"]
+      },
       "extends": [
+        "plugin:astro/recommended",
         "plugin:astro/jsx-a11y-recommended"
       ]
     },
     // TS Config
     {
-      "files": [
-        "**/*.ts?(x)"
-      ],
+      "files": ["**/*.ts?(x)"],
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
         "sourceType": "module"
+      },
+      "extends": ["plugin:react/recommended"],
+      "rules": {
+        "react/prop-types": "off", //Prevent missing props validation in a React component definition
+        "react/self-closing-comp": "error",
+        "react-hooks/rules-of-hooks": "error", //Enforce these rules https://reactjs.org/docs/hooks-rules.html
+        "react-hooks/exhaustive-deps": "warn"
       }
     }
   ],
@@ -44,45 +42,28 @@
     "no-console": [
       "warn",
       {
-        "allow": [
-          "warn",
-          "error"
-        ]
+        "allow": ["warn", "error"]
       }
     ], //warning if a console.log is present on the code
 
-    "react/prop-types": "off", //Prevent missing props validation in a React component definition
-    "react/self-closing-comp": "error",
-    "react-hooks/rules-of-hooks": "error", //Enforce these rules https://reactjs.org/docs/hooks-rules.html
-    "react-hooks/exhaustive-deps": "warn",
-
-    "@typescript-eslint/consistent-type-definitions": [
-      "error",
-      "type"
-    ], // Consistent with type definition either interface or type
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"], // Consistent with type definition either interface or type
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
         "ignoreRestSiblings": true
       }
     ], //require variables to be used, but ignore unused vars in destructuring
-    
+
     "import/order": [
       "error",
       {
         "newlines-between": "always",
-        "groups": [
-          "builtin",
-          "external",
-          "parent",
-          "sibling",
-          "index"
-        ],
+        "groups": ["builtin", "external", "parent", "sibling", "index"],
         "alphabetize": {
           "order": "asc",
           "caseInsensitive": true
         }
       }
-    ],
+    ]
   }
 }
