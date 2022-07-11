@@ -1,0 +1,30 @@
+---
+export type Props = {
+  as?: string
+  size: keyof typeof sizes
+  className?: string
+}
+
+const sizes = {
+  'title-1': 'font-serif text-title-1 lg:text-title-1-desktop',
+  'title-1-light': 'font-serif font-light text-title-1 lg:text-title-1-desktop',
+  'title-2': 'font-serif text-title-2 lg:text-title-2-desktop',
+  'title-3': 'font-serif text-title-3 lg:text-title-3-desktop',
+  'title-4': 'font-serif text-title-4 lg:text-title-4-desktop',
+  'body-5': 'font-sans text-body-5 lg:text-body-5-desktop',
+  'body-5-bold': 'font-sans font-bold text-body-5 lg:text-body-5-desktop',
+  'body-4': 'font-sans text-body-4 lg:text-body-4-desktop',
+  'body-4-bold': 'font-sans font-bold text-body-4 lg:text-body-4-desktop',
+  'body-3': 'font-sans text-body-3 lg:text-body-3-desktop',
+  'body-2': 'font-sans text-body-2 lg:text-body-2-desktop',
+  'body-1': 'font-sans text-body-1 lg:text-body-1-desktop',
+}
+
+const { as, size, className } = Astro.props as Props
+
+const Component = as || 'span'
+
+const sizeClass = sizes[size]
+---
+
+<Component class:list={[sizeClass, className]}><slot></slot></Component>
