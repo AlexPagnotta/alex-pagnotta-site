@@ -16,6 +16,17 @@ module.exports = {
   },
   content: ['./src/**/*.{astro,html,js,jsx,md,svelte,ts,tsx,vue}'],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '2rem',
+        lg: '1rem',
+      },
+      screens: {
+        md: '768px',
+        lg: '1024px',
+      },
+    },
     colors: {
       white: '#FFFFFF',
       black: '#121212',

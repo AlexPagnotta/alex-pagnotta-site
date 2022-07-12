@@ -2,6 +2,7 @@
 export type Props = {
   as?: string
   size: keyof typeof sizes
+  highlight?: boolean
   className?: string
 }
 
@@ -20,11 +21,16 @@ const sizes = {
   'body-1': 'font-sans text-body-1 lg:text-body-1-desktop',
 }
 
-const { as, size, className } = Astro.props as Props
+const { as, size, highlight, className } = Astro.props as Props
 
 const Component = as || 'span'
 
 const sizeClass = sizes[size]
+
+const highlightClass =
+  'relative isolate before:content-[""] before:-z-10 before:w-full before:absolute before:h-full before:bg-pink-highlight before:-left-1 before:-bottom-1'
 ---
 
-<Component class:list={[sizeClass, className]}><slot></slot></Component>
+<Component class:list={[sizeClass, highlight && highlightClass, className]}
+  ><slot></slot>
+</Component>
