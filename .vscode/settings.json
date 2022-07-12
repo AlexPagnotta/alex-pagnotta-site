@@ -6,5 +6,6 @@
     "typescript", // Enable .ts
     "typescriptreact" // Enable .tsx
   ],
-  "css.lint.unknownAtRules": "ignore"
+  "css.lint.unknownAtRules": "ignore",
+  "tailwindCSS.classAttributes": ["class", "className", ".*Styles"]
 }
