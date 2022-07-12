@@ -8,9 +8,10 @@ import '../styles/global.css'
 export type Props = {
   title?: string
   description?: string
+  current?: string
 }
 
-const { title, description } = Astro.props as Props
+const { title, description, current } = Astro.props as Props
 ---
 
 <!DOCTYPE html>
@@ -19,7 +20,7 @@ const { title, description } = Astro.props as Props
     <BaseHead title={title} description={description} />
   </head>
   <body>
-    <Header />
+    <Header current={current} />
     <slot></slot>
   </body>
 </html>

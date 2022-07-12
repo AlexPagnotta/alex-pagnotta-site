@@ -1,14 +1,33 @@
 ---
 import Text from '../components/Text.astro'
+
+import Container from './Container.astro'
+
+export type Props = {
+  current?: string
+}
+
+const { current } = Astro.props
 ---
 
-<div class='flex justify-between px-4 py-12'>
-  <Text size='body-5'>
-    Alex<Text size='body-5-bold'>Pagnotta</Text>
-  </Text>
-  <nav class='flex gap-8'>
-    <a href='/'><Text size='body-4-bold'>Home</Text></a>
-    <a href='/blog'><Text size='body-4'>Blog</Text></a>
-    <a href='/playground'><Text size='body-4'>Playground</Text></a>
-  </nav>
-</div>
+<Container>
+  <div class='flex justify-between px-8 lg:px-4 py-12'>
+    <Text size='body-5'>
+      Alex<Text size='body-5-bold'>Pagnotta</Text>
+    </Text>
+    <nav class='hidden gap-8 lg:flex'>
+      <a href='/'
+        ><Text size={current === 'home' ? 'body-4-bold' : 'body-4'}>Home</Text>
+      </a>
+      <a href='/blog'
+        ><Text size={current === 'blog' ? 'body-4-bold' : 'body-4'}>Blog</Text>
+      </a>
+      <a href='/playground'
+        ><Text size={current === 'playground' ? 'body-4-bold' : 'body-4'}
+          >Playground
+        </Text>
+      </a>
+    </nav>
+    <Text className='block lg:hidden' size={'body-4'}>Menu</Text>
+  </div>
+</Container>
