@@ -5,7 +5,7 @@ export type Props = {
   current?: string
 }
 
-const { current } = Astro.props
+const { current } = Astro.props as Props
 ---
 
 <div class='container flex justify-between py-12'>

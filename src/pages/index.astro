@@ -1,7 +1,13 @@
 ---
+import Hero from '../components/Hero.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout current={'home'}>
-  <main>Hompeage</main>
+  <main>
+    <Hero subTitle='Website'
+      >This is my blog, sometimes I write about things, cool things. Lorem Ipsum
+      dolor sit amet.
+    </Hero>
+  </main>
 </Layout>

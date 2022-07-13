@@ -1,0 +1,31 @@
+---
+import Text from '../components/Text.astro'
+
+export type Props = {
+  subTitle?: string
+}
+
+const { subTitle } = Astro.props as Props
+---
+
+<div class='container flex flex-col gap-4 py-24'>
+  <div>
+    <Text size='title-1-light'>
+      Ciao I'm <Text size='title-1' className='whitespace-nowrap'
+        >Alex Pagnotta
+      </Text>
+      {subTitle && (
+        <Text
+          size='body-4'
+          className='inline-block  -translate-y-9 -translate-x-6 rotate-[30deg] transform text-pink-500  lg:-translate-y-12'
+        >
+          {subTitle}
+        </Text>
+      )}
+    </Text>
+  </div>
+
+  <Text size='body-5' className={'max-w-sm lg:max-w-2xl'}>
+    <slot></slot>
+  </Text>
+</div>
