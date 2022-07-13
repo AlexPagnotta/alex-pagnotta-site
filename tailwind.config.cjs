@@ -1,10 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require('tailwindcss/defaultTheme')
-const addPlugin = require('tailwindcss/plugin')
 
 const BASE_FONT_SIZE_PX = 16
 
-const unitToPx = (val) => `${val}px`
 const unitToRem = (val) => `${val}rem`
 
 const pxToRem = (val) => val / BASE_FONT_SIZE_PX
@@ -75,13 +73,4 @@ module.exports = {
     fontWeight: { light: 300, regular: 400, bold: 700 },
     extend: {},
   },
-  plugins: [
-    addPlugin(function ({ addBase }) {
-      addBase({
-        ':root': {
-          fontSize: unitToPx(BASE_FONT_SIZE_PX),
-        },
-      })
-    }),
-  ],
 }
