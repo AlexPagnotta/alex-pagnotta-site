@@ -8,11 +8,11 @@ export type Props = {
 const { subTitle } = Astro.props as Props
 ---
 
-<div class='container flex flex-col gap-4 py-24'>
+<div class='container flex flex-col gap-4 py-16 lg:py-24'>
   <div>
     <Text size='title-1-light'>
-      Ciao I'm <Text size='title-1' className='whitespace-nowrap'
-        >Alex Pagnotta
+      Ciao I'm<Text size='title-1' className='whitespace-nowrap'>
+        Alex Pagnotta
       </Text>
       {subTitle && (
         <Text
