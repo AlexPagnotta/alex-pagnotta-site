@@ -1,5 +1,6 @@
 ---
 import Hero from '../components/Hero.astro'
+import Section from '../components/Section.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
@@ -9,5 +10,18 @@ import Layout from '../layouts/Layout.astro'
       >This is my blog, sometimes I write about things, cool things. Lorem Ipsum
       dolor sit amet.
     </Hero>
+    <Section title='Projects' subTitle={'View All'} subtitleLink={'/projects'}>
+      <div>Test</div>
+    </Section>
+    <Section title='Posts' subTitle={'View All'} subtitleLink={'/blog'}>
+      <div>Test</div>
+    </Section>
+    <Section
+      title='Playground'
+      subTitle={'View All'}
+      subtitleLink={'/playground'}
+    >
+      <div>Test</div>
+    </Section>
   </main>
 </Layout>

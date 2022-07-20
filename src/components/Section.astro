@@ -1,0 +1,30 @@
+---
+import Text from '../components/Text.astro'
+
+export type Props = {
+  title: string
+  subTitle?: string
+  subtitleLink?: string
+}
+
+const { title, subTitle, subtitleLink } = Astro.props as Props
+---
+
+<div class='container py-14 lg:py-20'>
+  <Text size='title-2' className='mb-8'
+    >{title}
+
+    {subTitle && (
+      <a href={subtitleLink}>
+        <Text
+          size='body-4'
+          className='inline-block -translate-y-10 -translate-x-4 rotate-[15deg] transform text-pink-500 lg:-translate-y-12'
+        >
+          {subTitle}
+        </Text>
+      </a>
+    )}
+  </Text>
+
+  <slot></slot>
+</div>
