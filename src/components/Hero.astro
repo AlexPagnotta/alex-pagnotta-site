@@ -9,22 +9,19 @@ const { subTitle } = Astro.props as Props
 ---
 
 <div class='container flex flex-col gap-4 py-16 lg:py-24'>
-  <div>
-    <Text size='title-1-light'>
-      Ciao I'm<Text size='title-1' className='whitespace-nowrap'>
-        Alex Pagnotta
-      </Text>
-      {subTitle && (
+  <Text size='title-1-light' className='pr-6'>
+    <span class='inline-block'>Ciao I'm&nbsp;</span>
+    <Text size='title-1' className='inline-block relative'
+      >Alex Pagnotta{subTitle && (
         <Text
           size='body-4'
-          className='inline-block -translate-y-9 -translate-x-6 rotate-[30deg] transform text-pink-500  lg:-translate-y-12'
+          className='absolute bottom-10 -right-10 rotate-[25deg] transform text-pink-500 lg:bottom-16 lg:-right-14'
         >
           {subTitle}
         </Text>
       )}
     </Text>
-  </div>
-
+  </Text>
   <Text size='body-5' className={'max-w-sm lg:max-w-2xl'}>
     <slot></slot>
   </Text>
