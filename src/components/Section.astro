@@ -1,5 +1,5 @@
 ---
-import Text from '../components/Text.astro'
+import Text from '../components/Text/Text.astro'
 
 export type Props = {
   title: string
@@ -10,21 +10,23 @@ export type Props = {
 const { title, subTitle, subtitleLink } = Astro.props as Props
 ---
 
-<div class='container py-14 lg:py-20'>
-  <Text size='title-2' className='block mb-8'
-    >{title}
+<div class=' py-14 lg:py-20'>
+  <div class='container'>
+    <Text size='title-2' className='block mb-8'
+      >{title}
 
-    {subTitle && (
-      <a href={subtitleLink}>
-        <Text
-          size='body-4'
-          className='inline-block -translate-y-8 -translate-x-2 rotate-[15deg] transform text-pink-500 lg:-translate-y-10'
-        >
-          {subTitle}
-        </Text>
-      </a>
-    )}
-  </Text>
+      {subTitle && (
+        <a href={subtitleLink}>
+          <Text
+            size='body-4'
+            className='inline-block -translate-y-8 -translate-x-2 rotate-[15deg] transform text-pink-500 lg:-translate-y-10'
+          >
+            {subTitle}
+          </Text>
+        </a>
+      )}
+    </Text>
+  </div>
 
   <slot></slot>
 </div>

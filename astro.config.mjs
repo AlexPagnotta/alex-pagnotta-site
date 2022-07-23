@@ -10,6 +10,6 @@ export default defineConfig({
         applyBaseStyles: false,
       },
     }),
-    preact(preact({ compat: true })),
+    preact({ compat: true }),
   ],
 })

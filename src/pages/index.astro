@@ -1,6 +1,10 @@
 ---
 import Hero from '../components/Hero.astro'
+import ItemList from '../components/ItemList.astro'
+import ItemPreview from '../components/ItemPreview.astro'
 import Section from '../components/Section.astro'
+import Slideshow from '../components/Slideshow'
+import Text from '../components/Text/Text.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
@@ -11,17 +15,47 @@ import Layout from '../layouts/Layout.astro'
       dolor sit amet.
     </Hero>
     <Section title='Projects' subTitle={'View All'} subtitleLink={'/projects'}>
-      <div>Test</div>
+      <Slideshow client:only='preact'>
+        <Text size='title-1'>CIAO</Text>
+      </Slideshow>
     </Section>
     <Section title='Posts' subTitle={'View All'} subtitleLink={'/blog'}>
-      <div>Test</div>
+      <ItemList>
+        <ItemPreview link='/playground/test'>
+          <Fragment slot='subTitle'
+            >07<span class='font-bold'>2022</span>
+          </Fragment>
+          <Fragment slot='title'>Blog Post Example Title</Fragment>
+          <Fragment slot='body'
+            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in
+            faucibus ante.
+          </Fragment>
+        </ItemPreview>
+      </ItemList>
     </Section>
     <Section
       title='Playground'
       subTitle={'View All'}
       subtitleLink={'/playground'}
     >
-      <div>Test</div>
+      <ItemList>
+        <ItemPreview link='/playground/test'>
+          <Fragment slot='subTitle'>#react #gsap #animation</Fragment>
+          <Fragment slot='title'>Playground Example Title</Fragment>
+          <Fragment slot='body'
+            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in
+            faucibus ante.
+          </Fragment>
+        </ItemPreview>
+        <ItemPreview link='/playground/test'>
+          <Fragment slot='subTitle'>#react #gsap #animation</Fragment>
+          <Fragment slot='title'>Playground Example Title</Fragment>
+          <Fragment slot='body'
+            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque in
+            faucibus ante.
+          </Fragment>
+        </ItemPreview>
+      </ItemList>
     </Section>
   </main>
 </Layout>

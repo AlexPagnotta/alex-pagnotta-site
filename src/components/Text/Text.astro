@@ -1,0 +1,20 @@
+---
+import { textHighlightStyle, textSizesStyles } from './styles'
+
+export type Props = {
+  as?: string
+  size: keyof typeof textSizesStyles
+  highlight?: boolean
+  className?: string
+}
+
+const { as, size, highlight, className } = Astro.props as Props
+
+const Component = as || 'span'
+
+const sizeStyle = textSizesStyles[size]
+---
+
+<Component class:list={[sizeStyle, highlight && textHighlightStyle, className]}
+  ><slot></slot>
+</Component>
