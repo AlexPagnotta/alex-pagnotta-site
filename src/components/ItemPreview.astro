@@ -13,7 +13,7 @@ const { link } = Astro.props as Props
     <Text size='body-4' className='text-pink-500'
       ><slot name='subTitle'></slot>
     </Text>
-    <Text size='title-4'><slot name='title'></slot></Text>
+    <Text size='title-4' as='h3'><slot name='title'></slot></Text>
     <Text size='body-4'><slot name='body'></slot></Text>
   </div>
 </a>
