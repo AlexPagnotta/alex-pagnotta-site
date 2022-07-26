@@ -8,6 +8,31 @@ export type Props = {
 const { current } = Astro.props as Props
 ---
 
+<script>
+  const menuButton = document.querySelector('#menu-button')
+  const menuButtonText = menuButton?.querySelector('span')
+  const menuDrawer = document.querySelector('#menu-drawer')
+
+  if (menuButton && menuButtonText && menuDrawer) {
+    menuButton.addEventListener('click', () => {
+      const isOpen = menuDrawer.getAttribute('menu-drawer') === 'open'
+
+      menuButtonText.innerText = isOpen ? 'Menu' : 'Close'
+      menuButtonText.classList.toggle('text-white')
+      menuDrawer.classList.toggle('invisible')
+
+      // Prevent scroll on body
+      document.body.classList.toggle('overflow-hidden')
+      document.body.classList.toggle('h-screen')
+      document.body.classList.toggle('fixed')
+      document.body.classList.toggle('w-full')
+      document.body.classList.toggle('top-0')
+
+      menuDrawer.setAttribute('menu-drawer', isOpen ? 'closed' : 'open')
+    })
+  }
+</script>
+
 <div class='container flex justify-between py-8 lg:py-12'>
   <a href='/'
     ><Text size='body-5'>
@@ -38,5 +63,38 @@ const { current } = Astro.props as Props
       </Text>
     </a>
   </nav>
-  <Text className='block lg:hidden' size={'body-4'}>Menu</Text>
+  <button id='menu-button' class='relative z-50'>
+    <Text className='block lg:hidden' size={'body-4'}>Menu</Text>
+  </button>
+  <div
+    id='menu-drawer'
+    class='fixed inset-0 bg-black z-40 invisible flex flex-col items-center justify-center lg:hidden'
+  >
+    <nav class='flex flex-col gap-16 items-center text-center'>
+      <a href='/'
+        ><Text
+          size={current === 'home' ? 'body-6-bold' : 'body-6'}
+          highlight={current === 'home'}
+          className={'text-white'}
+          >Home
+        </Text>
+      </a>
+      <a href='/blog'
+        ><Text
+          size={current === 'blog' ? 'body-6-bold' : 'body-6'}
+          highlight={current === 'blog'}
+          className={'text-white'}
+          >Blog
+        </Text>
+      </a>
+      <a href='/playground'
+        ><Text
+          size={current === 'playground' ? 'body-6-bold' : 'body-6'}
+          highlight={current === 'playground'}
+          className={'text-white'}
+          >Playground
+        </Text>
+      </a>
+    </nav>
+  </div>
 </div>

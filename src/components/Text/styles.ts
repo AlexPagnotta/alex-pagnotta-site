@@ -4,6 +4,7 @@ export const textSizesStyles = {
   'title-2': 'font-serif font-bold text-title-2 lg:text-title-2-desktop',
   'title-3': 'font-serif font-bold text-title-3 lg:text-title-3-desktop',
   'title-4': 'font-serif font-bold text-title-4 lg:text-title-4-desktop',
+  'body-6-bold': 'font-sans font-bold text-body-6 lg:text-body-6-desktop',
   'body-6': 'font-sans font-regular text-body-6 lg:text-body-6-desktop',
   'body-5': 'font-sans font-regular text-body-5 lg:text-body-5-desktop',
   'body-5-bold': 'font-sans font-bold text-body-5 lg:text-body-5-desktop',
