@@ -55,6 +55,9 @@ module.exports = {
       'title-4': [pxUnitToRem(24), 1.7],
       'title-4-desktop': [pxUnitToRem(24), 1.7],
 
+      'body-6': [pxUnitToRem(24), 1.6],
+      'body-6-desktop': [pxUnitToRem(28), 1.6],
+
       'body-5': [pxUnitToRem(20), 1.6],
       'body-5-desktop': [pxUnitToRem(24), 1.6],
 
