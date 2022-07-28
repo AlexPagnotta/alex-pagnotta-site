@@ -11,14 +11,20 @@ type PostData = {
   url: string
 }
 
-type PostPreview = Omit<PostData['frontmatter'], 'publishDate'> & {
+type GetPostPreviewsParams = {
+  limit?: number
+}
+
+type GetPostPreviewsResult = (Omit<PostData['frontmatter'], 'publishDate'> & {
   url?: string
   publishDate: Date
   publishDateMonth: string
   publishDateYear: string
-}
+})[]
 
-export const getPostPreviews = async (): Promise<PostPreview[]> => {
+export const getPostPreviews = async ({
+  limit,
+}: GetPostPreviewsParams = {}): Promise<GetPostPreviewsResult> => {
   const postPromises = import.meta.glob<PostData>('../pages/blog/*.md')
 
   const posts = await Promise.all(
@@ -40,7 +46,9 @@ export const getPostPreviews = async (): Promise<PostPreview[]> => {
     })
   )
 
-  return posts.sort((a, b) => {
+  const sortedPosts = posts.sort((a, b) => {
     return compareDesc(a.publishDate, b.publishDate)
   })
+
+  return limit ? sortedPosts.slice(0, limit) : sortedPosts
 }

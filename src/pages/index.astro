@@ -9,9 +9,9 @@ import { getPlaygroundPostPreviews } from '../data/playgroundPosts'
 import { getPostPreviews } from '../data/posts'
 import Layout from '../layouts/Layout.astro'
 
-const posts = await getPostPreviews()
+const posts = await getPostPreviews({ limit: 10 })
 
-const playgroundPosts = await getPlaygroundPostPreviews()
+const playgroundPosts = await getPlaygroundPostPreviews({ limit: 10 })
 ---
 
 <Layout current={'home'}>

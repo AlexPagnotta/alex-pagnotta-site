@@ -5,14 +5,15 @@ export type Props = {
   title: string
   subTitle?: string
   subtitleLink?: string
+  isActive?: boolean
 }
 
-const { title, subTitle, subtitleLink } = Astro.props as Props
+const { title, subTitle, subtitleLink, isActive } = Astro.props as Props
 ---
 
 <div class=' py-14 lg:py-20'>
-  <div class='container'>
-    <Text size='title-2' as='h1' className='block mb-8'
+  <div class='container mb-8'>
+    <Text size='title-2' as='h1' className='inline' highlight={isActive}
       >{title}
 
       {subTitle && (

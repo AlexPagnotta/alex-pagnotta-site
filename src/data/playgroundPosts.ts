@@ -12,17 +12,21 @@ type PlaygroundPostData = {
   url: string
 }
 
-type PlaygroundPostPreview = Omit<
+type PlaygroundPostPreviewsParams = {
+  limit?: number
+}
+
+type GetPlaygroundPostPreviewsResult = (Omit<
   PlaygroundPostData['frontmatter'],
   'publishDate'
 > & {
   url?: string
   publishDate: Date
-}
+})[]
 
-export const getPlaygroundPostPreviews = async (): Promise<
-  PlaygroundPostPreview[]
-> => {
+export const getPlaygroundPostPreviews = async ({
+  limit,
+}: PlaygroundPostPreviewsParams = {}): Promise<GetPlaygroundPostPreviewsResult> => {
   const postPromises = import.meta.glob<PlaygroundPostData>(
     '../pages/playground/*.md'
   )
@@ -45,7 +49,9 @@ export const getPlaygroundPostPreviews = async (): Promise<
     })
   )
 
-  return posts.sort((a, b) => {
+  const sortedPosts = posts.sort((a, b) => {
     return compareDesc(a.publishDate, b.publishDate)
   })
+
+  return limit ? sortedPosts.slice(0, limit) : sortedPosts
 }

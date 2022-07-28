@@ -1,7 +1,54 @@
 ---
+import Hero from '../components/Hero.astro'
+import ItemList from '../components/ItemList.astro'
+import ItemPreview from '../components/ItemPreview.astro'
+import Section from '../components/Section.astro'
+import { getPostPreviews } from '../data/posts'
 import Layout from '../layouts/Layout.astro'
+
+const posts = await getPostPreviews()
+
+const postsByYear = posts.reduce(
+  (group, post) =>
+    group.set(post.publishDateYear, [
+      ...(group.get(post.publishDateYear) || []),
+      post,
+    ]),
+  new Map<string, typeof posts>()
+)
+
+const currentYear = new Date().getFullYear()
 ---
 
 <Layout current={'blog'}>
-  <main></main>
+  <main>
+    <Hero subTitle='Blog'
+      >This is my blog, sometimes I write about things, cool things. Lorem Ipsum
+      dolor sit amet.
+    </Hero>
+    {[...postsByYear.entries()].map(([year, yearPosts]) => (
+      <Section
+        title={year}
+        subtitleLink={'/blog'}
+        isActive={year === `${currentYear}`}
+      >
+        <ItemList>
+          {yearPosts.map((post) => {
+            return (
+              <ItemPreview link={post.url}>
+                <Fragment slot='subTitle'>
+                  {post.publishDateMonth}
+                  <span class='font-bold'>{post.publishDateYear}</span>
+                </Fragment>
+                <Fragment slot='title'>{post.title}</Fragment>
+                {post.description && (
+                  <Fragment slot='body'>{post.description}</Fragment>
+                )}
+              </ItemPreview>
+            )
+          })}
+        </ItemList>
+      </Section>
+    ))}
+  </main>
 </Layout>
