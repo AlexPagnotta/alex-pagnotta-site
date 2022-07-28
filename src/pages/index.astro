@@ -1,81 +1,17 @@
 ---
-import { parse, compareDesc, format } from 'date-fns'
-
 import Hero from '../components/Hero.astro'
 import ItemList from '../components/ItemList.astro'
 import ItemPreview from '../components/ItemPreview.astro'
 import Section from '../components/Section.astro'
 import Slideshow from '../components/Slideshow'
 import Text from '../components/Text/Text.astro'
+import { getPlaygroundPostPreviews } from '../data/playgroundPosts'
+import { getPostPreviews } from '../data/posts'
 import Layout from '../layouts/Layout.astro'
 
-const parsePublishDate = (date: string) => parse(date, 'dd/MM/yyyy', new Date())
+const posts = await getPostPreviews()
 
-type PostFrontmatter = {
-  title: string
-  description?: string
-  publishDate: string
-}
-
-type Post = Omit<PostFrontmatter, 'publishDate'> & {
-  url?: string
-  publishDate: Date
-  publishDateMonth: string
-  publishDateYear: string
-}
-
-const posts: Post[] = await Astro.glob<PostFrontmatter>(
-  '../pages/blog/*.md'
-).then((posts) =>
-  posts
-    .map(({ frontmatter, url }) => {
-      const publishDate = parsePublishDate(frontmatter.publishDate)
-
-      return {
-        title: frontmatter.title,
-        description: frontmatter.description,
-        publishDate,
-        publishDateMonth: format(publishDate, 'MM'),
-        publishDateYear: format(publishDate, 'yyyy'),
-        url: url,
-      }
-    })
-    .sort((a, b) => {
-      return compareDesc(a.publishDate, b.publishDate)
-    })
-)
-
-type PlaygroundFormatter = {
-  title: string
-  description?: string
-  publishDate: string
-  tags: string[]
-}
-
-type Playground = Omit<PlaygroundFormatter, 'publishDate'> & {
-  url?: string
-  publishDate: Date
-}
-
-const playgroundPosts: Playground[] = await Astro.glob<PlaygroundFormatter>(
-  '../pages/playground/*.md'
-).then((posts) =>
-  posts
-    .map(({ frontmatter, url }) => {
-      const publishDate = parsePublishDate(frontmatter.publishDate)
-
-      return {
-        title: frontmatter.title,
-        description: frontmatter.description,
-        publishDate,
-        tags: frontmatter.tags,
-        url: url,
-      }
-    })
-    .sort((a, b) => {
-      return compareDesc(a.publishDate, b.publishDate)
-    })
-)
+const playgroundPosts = await getPlaygroundPostPreviews()
 ---
 
 <Layout current={'home'}>
