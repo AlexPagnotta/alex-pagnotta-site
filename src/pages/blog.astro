@@ -27,11 +27,7 @@ const currentYear = new Date().getFullYear()
       dolor sit amet.
     </Hero>
     {[...postsByYear.entries()].map(([year, yearPosts]) => (
-      <Section
-        title={year}
-        subtitleLink={'/blog'}
-        isActive={year === `${currentYear}`}
-      >
+      <Section title={year} isActive={year === `${currentYear}`}>
         <ItemList>
           {yearPosts.map((post) => {
             return (

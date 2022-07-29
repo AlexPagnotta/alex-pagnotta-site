@@ -1,0 +1,36 @@
+---
+import Hero from '../components/Hero.astro'
+import ItemList from '../components/ItemList.astro'
+import ItemPreview from '../components/ItemPreview.astro'
+import Section from '../components/Section.astro'
+import { getPlaygroundPostPreviews } from '../data/playgroundPosts'
+import Layout from '../layouts/Layout.astro'
+
+const playgroundPosts = await getPlaygroundPostPreviews()
+---
+
+<Layout current={'playground'}>
+  <main>
+    <Hero subTitle='Playground'
+      >This is my blog, sometimes I write about things, cool things. Lorem Ipsum
+      dolor sit amet.
+    </Hero>
+    <Section title={'Posts'}>
+      <ItemList>
+        {playgroundPosts.map((post) => {
+          return (
+            <ItemPreview link={post.url}>
+              <Fragment slot='subTitle'>
+                {post.tags && post.tags.map((tag) => `#${tag}`).join(' ')}
+              </Fragment>
+              <Fragment slot='title'>{post.title}</Fragment>
+              {post.description && (
+                <Fragment slot='body'>{post.description}</Fragment>
+              )}
+            </ItemPreview>
+          )
+        })}
+      </ItemList>
+    </Section>
+  </main>
+</Layout>
